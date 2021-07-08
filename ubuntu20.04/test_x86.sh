@@ -176,7 +176,7 @@ systemctl stop mssql-server
 /opt/mssql/bin/mssql-conf set network.tcpport $dbport
 
 
-openssl req -x509 -nodes -newkey rsa:4096 -subj '/CN=mssql.contoso.com' -keyout mssql.key -out mssql.pem -days 365 
+openssl req -x509 -nodes -newkey rsa:4096 -subj '/$(hostname -I | awk '{print $1}')' -keyout mssql.key -out mssql.pem -days 365 
 chown mssql:mssql mssql.pem mssql.key 
 chmod 600 mssql.pem mssql.key 
 # in this case we are saving the certificate to the certs folder under /etc/ssl/ which has the following permission 755(drwxr-xr-x)
