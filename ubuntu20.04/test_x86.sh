@@ -179,15 +179,13 @@ systemctl stop mssql-server
 openssl req -x509 -nodes -newkey rsa:4096 -keyout mssql.key -out mssql.pem -days 365 
 chown mssql:mssql mssql.pem mssql.key 
 chmod 600 mssql.pem mssql.key 
-# in this case we are saving the certificate to the certs folder under /etc/ssl/ which has the following permission 755(drwxr-xr-x)
-mv mssql.pem /etc/ssl/certs/
-# in this case we are saving the private key to the private folder under /etc/ssl/ with permissions set to 755(drwxr-xr-x)
-mv mssql.key /etc/ssl/private/ 
+mv mssql.pem /var/opt/mssql/certs/
+mv mssql.key /var/opt/mssql/certs/
 
 
 cat /var/opt/mssql/mssql.conf 
-/opt/mssql/bin/mssql-conf set network.tlscert /etc/ssl/certs/mssql.pem 
-/opt/mssql/bin/mssql-conf set network.tlskey /etc/ssl/private/mssql.key 
+/opt/mssql/bin/mssql-conf set network.tlscert /var/opt/mssql/certs/mssql.pem 
+/opt/mssql/bin/mssql-conf set network.tlskey /var/opt/mssql/certs/mssql.key 
 /opt/mssql/bin/mssql-conf set network.tlsprotocols 1.2
 /opt/mssql/bin/mssql-conf set network.forceencryption 1
 systemctl restart mssql-server 
