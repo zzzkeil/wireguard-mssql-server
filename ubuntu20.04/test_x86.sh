@@ -53,7 +53,7 @@ if [[ -e /etc/debian_version ]]; then
 fi
 #
 ### script already installed check
-if [[ -e /root/Wireguard-MariaDB-Server.README ]]; then
+if [[ -e /root/wireguard-mssql-Server.README ]]; then
 	 exit 1
 fi
 #
@@ -92,7 +92,7 @@ apt install wireguard-dkms wireguard-tools -y
 #
 ### setup ufw 
 ufw allow $wg0port/udp
-ufw allow in on wg0 to any port $dbport proto tcp
+ufw allow in on wg0 to any port $dbport
 
 
 #
@@ -191,9 +191,6 @@ cat /var/opt/mssql/mssql.conf
 systemctl restart mssql-server 
 
 
-
-
-
 systemctl restart mssql-server
 systemctl enable wg-quick@wg0.service
 systemctl start wg-quick@wg0.service
@@ -202,6 +199,8 @@ curl -o add_client.sh https://raw.githubusercontent.com/zzzkeil/Wireguard-DNScry
 curl -o remove_client.sh https://raw.githubusercontent.com/zzzkeil/Wireguard-DNScrypt-VPN-Server/master/tools/remove_client.sh
 chmod +x add_client.sh
 chmod +x remove_client.sh
+ln -s /etc/wireguard/ /root/wireguard_folder
+ln -s /var/opt/mssql/ /root/mssql_folder
 clear
 echo " to add or remove clients run ./add_client.sh or remove_client.sh"
 
