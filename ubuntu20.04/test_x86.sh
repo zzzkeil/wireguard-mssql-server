@@ -67,7 +67,7 @@ read -p "Choose your Wireguard Port: " -e -i 51822 wg0port
 echo "------------------------------------------------------------"
 echo
 echo "------------------------------------------------------------"
-read -p "Choose your MariaDB Port: " -e -i 1433 dbport
+read -p "Choose your mssql Port: " -e -i 1433 dbport
 echo "------------------------------------------------------------"
 #
 ### apt systemupdate and installs	 
