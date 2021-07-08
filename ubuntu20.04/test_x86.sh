@@ -204,5 +204,6 @@ ln -s /var/opt/mssql/ /root/mssql_folder
 clear
 echo " to add or remove clients run ./add_client.sh or remove_client.sh"
 
-
+ufw --force enable
+ufw reload
 
