@@ -93,6 +93,7 @@ systemctl stop mssql-server
 openssl req -x509 -nodes -newkey rsa:4096 -keyout mssql.key -out mssql.pem -days 365 
 chown mssql:mssql mssql.pem mssql.key 
 chmod 600 mssql.pem mssql.key 
+mkdir /var/opt/mssql/certs/
 mv mssql.pem /var/opt/mssql/certs/
 mv mssql.key /var/opt/mssql/certs/
 
