@@ -33,11 +33,13 @@ if [[ -e /root/base_setup.README ]]; then
 fi
 #
 ### OS version check
-if [[ -e /etc/debian_version ]]; then
-      echo "Debian Distribution"
-      else
-      echo "This is not a Debian Distribution."
-      exit 1
+VERSION_ID=$(cat /etc/os-release | grep "VERSION_ID")
+
+if [[ "$VERSION_ID" = 'VERSION_ID="20.04"' ]]; then
+    echo " system is ubuntu 20.04 - ok lets go"
+    else
+    echo "sorry, this script is only for ubuntu 20.04"
+    exit 1
 fi
 #
 ### script already installed check
@@ -57,19 +59,6 @@ echo "------------------------------------------------------------"
 #
 ### apt systemupdate and installs	 
 echo
-VERSION_ID=$(cat /etc/os-release | grep "VERSION_ID")
-if [[ "$VERSION_ID" = 'VERSION_ID="10"' ]]; then
-	echo "deb http://deb.debian.org/debian/ unstable main" > /etc/apt/sources.list.d/unstable-wireguard.list
-        printf 'Package: *\nPin: release a=unstable\nPin-Priority: 150\n' > /etc/apt/preferences.d/limit-unstable
-fi
-
-if [[ "$VERSION_ID" = 'VERSION_ID="18.04"' ]]; then
-    add-apt-repository ppa:wireguard/wireguard
-fi
-
-if [[ "$VERSION_ID" = 'VERSION_ID="20.04"' ]]; then
-    echo " system is ubuntu 20.04"
-fi
 
 apt update && apt upgrade -y && apt autoremove -y
 
