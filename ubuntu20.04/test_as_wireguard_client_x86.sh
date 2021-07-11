@@ -105,7 +105,7 @@ echo "
 Address = $wg0clientip
 PrivateKey = $wg0clkey
 [Peer]
-Endpoint = $wg0endip:$wg0endip
+Endpoint = $wg0endip:$wg0port
 PublicKey = $wg0pupkey
 AllowedIPs = $wg0allowed
 PersistentKeepalive = $wg0keepa
