@@ -80,7 +80,7 @@ mv mssql.key /var/opt/mssql/certs/
 
 
 cat /var/opt/mssql/mssql.conf 
-/opt/mssql/bin/mssql-conf set network.ipaddress 10.8.0.0
+/opt/mssql/bin/mssql-conf set network.ipaddress 0.0.0.0
 /opt/mssql/bin/mssql-conf set network.tcpport $dbport
 /opt/mssql/bin/mssql-conf set network.tlscert /var/opt/mssql/certs/mssql.pem 
 /opt/mssql/bin/mssql-conf set network.tlskey /var/opt/mssql/certs/mssql.key 
