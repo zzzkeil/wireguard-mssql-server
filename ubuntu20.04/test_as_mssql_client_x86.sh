@@ -58,7 +58,7 @@ apt update && apt upgrade -y && apt autoremove -y
 
 
 ### setup ufw 
-ufw allow from 10.8.0.0/24 to any $dbport proto tcp
+ufw allow from 10.8.0.0/24 to any port $dbport proto tcp
 
 wget -qO- https://packages.microsoft.com/keys/microsoft.asc | sudo apt-key add -
 add-apt-repository "$(wget -qO- https://packages.microsoft.com/config/ubuntu/20.04/mssql-server-2019.list)"
